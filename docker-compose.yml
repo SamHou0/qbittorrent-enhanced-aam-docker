@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  qbittorrent:
+    privileged: true
+    image: samhou0/qbittorrent-enhanced-aam
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+      - WEBUI_PORT=8085
+    volumes:
+      - ./config:/config
+      - ./downloads:/downloads
+    ports:
+      - "8085:8085"
+      - "6881:6881"
+      - "6881:6881/udp"
+    restart: unless-stopped
